@@ -1,0 +1,24 @@
+.headerBg {
+  width: 100vw;
+  height: 261px;
+  background-image: url("../../assets/bg_desktop.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 58.25%, 0% 93.81%);
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.logoArea {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 28px;
+}
+
+.logo {
+  width: 143px;
+  height: 36px;
+  object-fit: contain;
+}
