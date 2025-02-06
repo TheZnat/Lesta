@@ -1,4 +1,4 @@
-import { Middleware } from "@reduxjs/toolkit";
+import { AnyAction, Middleware } from "@reduxjs/toolkit";
 import {
   applyFilters,
   setSearch,
@@ -7,27 +7,21 @@ import {
   setNation,
   resetFilters,
 } from "./filterSlice";
-import { RootState, AppDispatch } from "../../store";
 
-const filterMiddleware: Middleware<{}, RootState, AppDispatch> =
+const filterMiddleware: Middleware =
   ({ dispatch }) =>
   (next) =>
   (action) => {
     const result = next(action);
 
     if (
-      [
-        setSearch.type,
-        setType.type,
-        setLevel.type,
-        setNation.type,
-        resetFilters.type,
-      ].includes(action.type)
+      [setSearch, setType, setLevel, setNation, resetFilters].some(
+        (actionCreator) => actionCreator.match(action)
+      )
     ) {
-      dispatch(applyFilters());
+      dispatch(applyFilters() as unknown as AnyAction);
     }
 
     return result;
   };
-
 export default filterMiddleware;
